@@ -74,7 +74,6 @@ func(c *Client)writePump(){
 	for{
 		select{
 		case message,ok:= <-c.send:
-			fmt.Println("sed")
 
 			c.conn.SetWriteDeadline(time.Now().Add(writewait))
 			if !ok{

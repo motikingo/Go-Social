@@ -21,34 +21,37 @@ func NewHub() *Hub {
 }
 
 func (h *Hub) run() {
+	for{
 
-	select {
-	case client := <-h.registy:
-		h.clients[client] = true
-
-	case client := <-h.unregister:
-		if !h.clients[client] {
-
-			delete(h.clients, client)
-			close(client.send)
-		}
-
-	case message := <-h.broadcast:
-
-		fmt.Println(message)
-		for client := range h.clients {
-			fmt.Println("client")
-
-			fmt.Println(client)
-			select {
-			case client.send <- message:
-			default:
-				close(client.send)
+		select {
+		case client := <-h.registy:
+			h.clients[client] = true
+	
+		case client := <-h.unregister:
+			if !h.clients[client] {
+	
 				delete(h.clients, client)
+				close(client.send)
 			}
+	
+		case message := <-h.broadcast:
+	
+			fmt.Println("this is message "+ string (message))
+			for client := range h.clients {
+				fmt.Println("client")
+	
+				fmt.Println(client)
+				select {
+				case client.send <- message:
+				default:
+					close(client.send)
+					delete(h.clients, client)
+				}
+			}
+	
 		}
 
 	}
-	fmt.Println("huuuu...")
+
 
 }

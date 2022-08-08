@@ -13,7 +13,7 @@
         
 
         if (window["WebSocket"]){
-            console.log("check...")
+            console.log("web socket check...")
             c = new WebSocket("ws://localhost:8080/ws")
             
             c.onclose = (event)=>{
@@ -22,8 +22,10 @@
             }
 
             c.onmessage =(m)=>{
-                console.log("hoooooooooooooo")
-                chat.childAppend(document.createElement("div").innerHTML = m.data)
+                console.log(m.data)
+                var ch  = document.createElement("div")
+                ch.innerHTML = m.data
+                chat.appendChild(ch)
             
             }
 
@@ -43,8 +45,9 @@
 <body>
 
     <form id = "f">
-        <input type="text" id = "msg" />
         <div id = "chat"></div>
+        <input type="text" id = "msg" />
+        
         <input type ="submit" value="send-mgs"/>
     </form>
     
