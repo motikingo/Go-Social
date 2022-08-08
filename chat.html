@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <script>
+        
+        window.onload = ()=>{
+            var co;
+            var s = document.getElementById("123")
+            var c = document.getElementById("come")
+
+        
+            if (window["WebSocket"]){
+                co = new WebSocket("ws://localhost:8080/ws")
+                co.onclose = ()=>{
+                    console.log("am closing....")
+                }
+                co.onmessage = (m)=>{
+                    console.log("log me out!")
+                    console.log(m)
+                }
+            
+            }
+
+            document.getElementById("fu").onsubmit = function(){
+            
+                co.onopen = ()=>{
+                    co.send(s.value)
+                    s.value = ""
+                }
+                return false
+            }
+        }
+        
+    </script>
+</head>
+<body>
+
+    <form id = "fu">
+        <input type= "text" id = "123"/>
+        <p id = "come"></p>
+        <input type= "submit" value = "chat"/>
+    </form>
+   
+</body>
+</html>

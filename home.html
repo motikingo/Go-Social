@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type = "text/javascript">
+    window.onload = function(){
+        console.log("load...")
+        var c;
+        var fu;
+        var chat = document.getElementById("chat")
+        var msg =document.getElementById("msg")
+
+        
+
+        if (window["WebSocket"]){
+            console.log("check...")
+            c = new WebSocket("ws://localhost:8080/ws")
+            
+            c.onclose = (event)=>{
+                console.log("what the f happened????")
+
+            }
+
+            c.onmessage =(m)=>{
+                console.log("hoooooooooooooo")
+                chat.childAppend(document.createElement("div").innerHTML = m.data)
+            
+            }
+
+        }
+
+        document.getElementById("f").onsubmit = function(){
+            console.log("here ...")
+            c.send(msg.value)
+            msg.value = " "
+            return false;        
+
+        }  
+      
+    }       
+    </script>
+</head>
+<body>
+
+    <form id = "f">
+        <input type="text" id = "msg" />
+        <div id = "chat"></div>
+        <input type ="submit" value="send-mgs"/>
+    </form>
+    
+    
+
+    
+</body>
+</html>
