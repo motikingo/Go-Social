@@ -6,7 +6,7 @@ import (
 
 	"github.com/motikingo/websocketproject/internal/pkg/Admin"
 	"github.com/motikingo/websocketproject/internal/pkg/entity"
-	"github.com/motikingo/websocketproject/pkg/Helper"
+	"github.com/motikingo/websocketproject/package/Helper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

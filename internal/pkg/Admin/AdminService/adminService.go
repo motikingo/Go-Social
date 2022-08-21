@@ -12,7 +12,7 @@ type AdminService struct {
 // NewAdminService function 
 func NewAdminService( repo Admin.AdminRepo ) Admin.AdminService {
 	return &AdminService{
-		AdminRepo : repo  , 
+		AdminRepo : repo , 
 	}
 }
 // CreateAdmin (admin *entity.Admin)  *entity.Admin
