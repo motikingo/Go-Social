@@ -5,8 +5,8 @@ import (
 	"math/rand"
 	"strings"
 	"time"
-	"github.com/samuael/Project/Weg/internal/pkg/entity"
-	etc "github.com/samuael/Project/Weg/pkg/ethiopianCalendar"
+	"github.com//motikingo/websocketproject/internal/pkg/entity"
+	etc "github.com//motikingo/websocketproject/package/ethiopianCalendar"
 )
 
 var seededRand *rand.Rand = rand.New(
